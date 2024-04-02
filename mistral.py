@@ -5,13 +5,11 @@ load_dotenv("./env")
 from fastapi import FastAPI
 import message
 import os
-from datetime import datetime
 from mistralai.client import MistralClient
 from mistralai.models.chat_completion import ChatMessage
 from pyjsparser import parse
 
 api_key = os.environ["MISTRAL_API_KEY"]
-print("Mistral API KEY: ", api_key)
 model = "mistral-tiny"
 
 client = MistralClient(api_key=api_key)
@@ -24,10 +22,6 @@ async def root():
 
 @app.get("/implement")
 def add(code_gen_task: str):
-    return {
-        "code": "document.body.backgroundColor = 'blue'",
-        "correct": True
-    }
     code_prompt = message.code_prompt(code_gen_task)
 
     code_response = client.chat(

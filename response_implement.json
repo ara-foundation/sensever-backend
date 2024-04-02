@@ -1,0 +1,5 @@
+{
+    "url": "http://localhost:8088/implement?code_gen_task=change%20background%20to%20blue",
+    "code":"\n```javascript\nfunction changeBackgroundColor(color) {\n  document.body.style.backgroundColor = color;\n}\n\nchangeBackgroundColor('blue');\n```",
+    "correct":true
+}

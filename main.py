@@ -2,6 +2,7 @@ from gpt4all import GPT4All
 from datetime import datetime
 from fastapi import FastAPI
 from pathlib import Path
+import time
 
 app = FastAPI()
 
@@ -19,10 +20,16 @@ model = GPT4All(str(path), n_threads=8, ngl=32)
 
 @app.get("/")
 async def root():
-    return {"message": "Hello, this is Sensever backend"}
+    return {"correct": True}
 
 @app.get("/implement")
 def add(code_gen_task: str):
+    #time.sleep(3)
+    #result = {
+    #    "code":"\n```javascript\nfunction changeBackgroundColor(color) {\n  document.body.style.backgroundColor = color;\n}\n\nchangeBackgroundColor('red');\n```".replace("```javascript", "").replace("```", ""),
+    #    "correct": True
+    #}
+    #return result
     task = code_gen_prefix + code_gen_task + code_gen_suffix 
 
     print("generating code... at = ", datetime.now().strftime("%H:%M:%S"))
@@ -43,7 +50,7 @@ def add(code_gen_task: str):
     print(valid_output.lower())
 
     result = {
-        "code": output,
+        "code": output.replace("```javascript", "").replace("```", ""),
         "correct": True,
     }
 

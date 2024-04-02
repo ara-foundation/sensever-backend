@@ -3,16 +3,13 @@ from datetime import datetime
 from fastapi import FastAPI
 from pathlib import Path
 import time
+import message
 
 app = FastAPI()
 
 cwd = Path.cwd()
 
 path = cwd.joinpath("./models/mistral-7b-instruct-v0.1.Q4_0.gguf")
-code_gen_prefix = "You are a senior programmer. "
-code_gen_suffix = " is a programming task to complete. Write a javascript code without explanation."
-valid_prefix = "you are a senior programmer. You receive a question to answer: "
-valid_suffix = " write 'yes' or 'no' without any explanation"
 
 print(str(path))
 
@@ -24,12 +21,12 @@ async def root():
 
 @app.get("/implement")
 def add(code_gen_task: str):
-    #time.sleep(3)
-    #result = {
-    #    "code":"\n```javascript\nfunction changeBackgroundColor(color) {\n  document.body.style.backgroundColor = color;\n}\n\nchangeBackgroundColor('red');\n```".replace("```javascript", "").replace("```", ""),
-    #    "correct": True
-    #}
-    #return result
+    print("message.code_prompt: ", message.code_prompt(code_gen_task))
+
+    time.sleep(3)
+    code = "\n```javascript\nfunction changeBackgroundColor(color) {\n  document.body.style.backgroundColor = color;\n}\n\nchangeBackgroundColor('red');\n```"
+    result = message.correct_answer(code)
+    return result
     task = code_gen_prefix + code_gen_task + code_gen_suffix 
 
     print("generating code... at = ", datetime.now().strftime("%H:%M:%S"))

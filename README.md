@@ -1,7 +1,7 @@
 A Sensever virtual assistant's backend. Sensever is a virtual assistant in the Ara project.
 Please refer to `ara` for more information about the Sensever context.
 
-Currently Sensever background several models: Mistral, Open Interpreter and Gpt4All.
+Currently Sensever background uses several models: Mistral, Open Interpreter and Gpt4All.
 
 # Setup
 
@@ -23,6 +23,8 @@ Open Interpreter is a AI interface to your computer. Control your computer using
 
 ---
 # Gpt4All
+> If your computer is powerful enough to play the recent AAA level games.
+
 Gpt4All is a software project that allows to run Large Language Models (LLMs) on your computer offline.
 Large Language Models are type of Machine Learning softwares that generate a text for the user's prompt.
 
